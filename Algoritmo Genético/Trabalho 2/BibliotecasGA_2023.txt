@@ -1,0 +1,13 @@
+Biblioteca do trabalho2
+https://pypi.org/project/geneticalgorithm2
+
+Parâmetros do GA
+https://github.com/PasaOpasen/geneticalgorithm2
+
+
+Informação funções matemáticas
+https://github.com/PasaOpasen/OptimizationTestFunctions#rastrigin
+https://github.com/PasaOpasen/geneticalgorithm2
+
+Outra biblioteca de GA.
+https://pypi.org/project/deap/
