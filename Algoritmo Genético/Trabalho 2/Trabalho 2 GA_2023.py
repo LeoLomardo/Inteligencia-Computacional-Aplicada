@@ -7,11 +7,14 @@ Created on Thu May  6 17:38:06 2021
 
 import numpy as np
 import math
+import locale
 from geneticalgorithm2 import geneticalgorithm2 as ga
 from geneticalgorithm2 import Callbacks
 from geneticalgorithm2 import Population_initializer
+from geneticalgorithm2 import Generation, AlgorithmParams 
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
+from OptimizationTestFunctions import Rastrigin, plot_3d
 
 #############################################################################################
 # Função do problema
@@ -32,18 +35,18 @@ def f(X):
 varbound=np.array([[-5.12,5.12]]*2)
 
 # parâmetros do GA
-max_num_iteration=10  # número de gerações
-population_size=10
-mutation_probability=0.001
-elit_ratio=0.2 # percentual de individuos preservados na próxima geracao
-crossover_probability=0.6
-parents_portion=0.8# zero, significa que toda a população é 
+max_num_iteration = 25  # número de gerações
+population_size = 250
+mutation_probability = 1.0
+elit_ratio=0.005 # percentual de individuos preservados na próxima geracao
+crossover_probability = 1.0
+parents_portion = 0.3# zero, significa que toda a população é 
                     # preenchida com as soluções recém-geradas
-
 crossover_type= 'one_point'
+
 selection_type='roulette'
 
-num_experimentos=5 #número de rodadas sucessivas
+num_experimentos = 50 #número de rodadas sucessivas
 
 
                    
@@ -83,7 +86,7 @@ for simu in range(0, num_experimentos+1):
                   init_creator = None,
                   init_oppositors = None,
                   duplicates_oppositor = None,
-                  remove_duplicates_generation_step = 2,
+                  remove_duplicates_generation_step = 1,
                   revolution_oppositor = None,
                   revolution_after_stagnation_step = None,
                   revolution_part =0,
@@ -119,20 +122,31 @@ for i in range(0, max_num_iteration):
 
 
 print('------------------------------------------------------------------------')    
-print('Valores médios dos melhores por Geração')    
-print(mean_simulation)
+print('Valores médios dos melhores por Geração:')    
+print(str(mean_simulation).replace('.',','))
+
+print('------------------------------------------------------------------------')    
+print('Média valores médios dos melhores por Geração:')    
+media_medios = np.mean(mean_simulation)
+print(str(media_medios).replace('.',','))
+
+print('------------------------------------------------------------------------')    
+print('Menor valor médio:')    
+print(str(mean_simulation[max_num_iteration - 1]).replace('.',','))
+
+contador = 3
 
 fig1, ax1 = plt.subplots()
 ax1.set_title('Media dos Melhores por Geração')
 ax1.boxplot(mean_simulation)
+plt.savefig(f"/path/to/your/drive/folder/Imagens/padrao{0}_1.png")
 plt.show()
-
 
 plt.plot(mean_simulation, label='Média dos Melhores por Geração')
 plt.legend(loc='upper right')
+plt.savefig(f"/path/to/your/drive/folder/Imagens/padrao{0}_2.png")
 plt.show()
-    
-    
+
     
     
     
